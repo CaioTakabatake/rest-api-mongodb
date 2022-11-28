@@ -17,11 +17,11 @@ export default class BookController {
     };
 
     static createBook = (req, res) => {
-        const livro = new books(req.body);
+        const book = new books(req.body);
 
-        livro.save((err) => {
+        book.save((err) => {
             if (err) return res.status(500).send({ message: `${err} - couldn't create book` });
-            res.status(201).send(livro.toJSON());
+            res.status(201).send(book.toJSON());
         });
     };
 
