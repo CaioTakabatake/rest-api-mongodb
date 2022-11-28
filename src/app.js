@@ -27,14 +27,23 @@ app.post('/books', (req, res) => {
 });
 
 app.put('/books/:id', (req, res) => {
-    const index = findBook(req.params.id);
+    const { id } = req.params;
+    const index = findBook(id);
     books[index].title = req.body.title;
     res.json(books);
 });
 
 app.get('/books/:id', (req, res) => {
-    const index = findBook(req.params.id);
+    const { id } = req.params;
+    const index = findBook(id);
     res.json(books[index]);
+});
+
+app.delete('/books/:id', (req, res) => {
+    const { id } = req.params;
+    const index = findBook(id);
+    books.splice(index, 1);
+    res.send(`Book ${id} deleted`);
 });
 
 function findBook(id) {
