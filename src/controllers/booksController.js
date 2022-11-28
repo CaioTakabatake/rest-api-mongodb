@@ -7,6 +7,15 @@ export default class BookController {
         });
     };
 
+    static listBookFromId = (req, res) => {
+        const id = req.params.id;
+
+        books.findById(id, (err, books) => {
+            if (err) return res.status(400).send({ message: `${err.message} - couldn't find book` });
+            res.status(200).send(books);
+        });
+    };
+
     static createBook = (req, res) => {
         const livro = new books(req.body);
 

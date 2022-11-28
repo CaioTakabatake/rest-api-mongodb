@@ -14,12 +14,6 @@ app.use(express.json());
 
 routes(app);
 
-app.get('/books/:id', (req, res) => {
-    const { id } = req.params;
-    const index = findBook(id);
-    res.json(books[index]);
-});
-
 app.delete('/books/:id', (req, res) => {
     const { id } = req.params;
     const index = findBook(id);
