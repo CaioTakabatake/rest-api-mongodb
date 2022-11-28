@@ -15,4 +15,13 @@ export default class BookController {
             res.status(201).send(livro.toJSON());
         });
     };
+
+    static updateBook = (req, res) => {
+        const id = req.params.id;
+
+        books.findByIdAndUpdate(id, { $set: req.body }, (err) => {
+            if (err) return res.status(500).send({ message: `${err.message} - couldn't update book` });
+            res.status(200).send({ message: 'Book Updated' });
+        });
+    };
 }

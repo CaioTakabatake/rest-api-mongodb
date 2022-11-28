@@ -14,13 +14,6 @@ app.use(express.json());
 
 routes(app);
 
-app.put('/books/:id', (req, res) => {
-    const { id } = req.params;
-    const index = findBook(id);
-    books[index].title = req.body.title;
-    res.json(books);
-});
-
 app.get('/books/:id', (req, res) => {
     const { id } = req.params;
     const index = findBook(id);
