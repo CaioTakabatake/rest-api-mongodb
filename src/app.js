@@ -26,4 +26,19 @@ app.post('/books', (req, res) => {
     res.status(201).send('Book added');
 });
 
+app.put('/books/:id', (req, res) => {
+    const index = findBook(req.params.id);
+    books[index].title = req.body.title;
+    res.json(books);
+});
+
+app.get('/books/:id', (req, res) => {
+    const index = findBook(req.params.id);
+    res.json(books[index]);
+});
+
+function findBook(id) {
+    return books.findIndex((book) => book.id == id);
+}
+
 export default app;
