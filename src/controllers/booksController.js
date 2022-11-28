@@ -33,4 +33,13 @@ export default class BookController {
             res.status(200).send({ message: 'Book Updated' });
         });
     };
+
+    static deleteBook = (req, res) => {
+        const id = req.params.id;
+
+        books.findByIdAndDelete(id, (err) => {
+            if (err) return res.status(500).send({ message: `${err.message} - couldn't delete book` });
+            res.status(200).send({ message: 'Book Deleted' });
+        });
+    };
 }
