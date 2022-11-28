@@ -1,18 +1,19 @@
 import express from 'express';
 import db from './config/dbConnect.js';
+import books from './models/Book.js';
 
 db.on('error', console.log.bind(console, 'Connection error'));
 db.once('open', () => {
     console.log('DB Connection successful');
 });
 
-const books = [
-    {
-        id: 1,
-        title: 'JavaScript',
-    },
-    { id: 2, title: 'C#' },
-];
+// const books = [
+//     {
+//         id: 1,
+//         title: 'JavaScript',
+//     },
+//     { id: 2, title: 'C#' },
+// ];
 
 const app = express();
 
@@ -23,7 +24,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/books', (req, res) => {
-    res.status(200).json(books);
+    books.find((err, books) => {
+        res.status(200).json(books);
+    });
 });
 
 app.post('/books', (req, res) => {
